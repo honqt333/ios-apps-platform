@@ -1,0 +1,82 @@
+{
+    "name": "ios-platform/backend",
+    "type": "project",
+    "description": "iOS Apps Distribution Platform — Backend API (Laravel 12)",
+    "keywords": ["laravel", "ios", "ipa", "app-store", "distribution"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.3",
+        "ext-zip": "*",
+        "ext-mbstring": "*",
+        "ext-pdo": "*",
+        "ext-fileinfo": "*",
+        "ext-gd": "*",
+        "laravel/framework": "^12.0",
+        "laravel/tinker": "^2.10",
+        "laravel/sanctum": "^4.0",
+        "tymon/jwt-auth": "^2.1",
+        "spatie/laravel-permission": "^6.10",
+        "spatie/laravel-activitylog": "^4.7",
+        "spatie/laravel-medialibrary": "^11.5",
+        "league/flysystem-aws-s3-v3": "^3.0",
+        "predis/predis": "^2.2",
+        "guzzlehttp/guzzle": "^7.9",
+        "intervention/image": "^3.5",
+        "ramsey/uuid": "^4.7"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.23",
+        "laravel/pail": "^1.2",
+        "laravel/pint": "^1.18",
+        "laravel/sail": "^1.41",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.5",
+        "phpunit/phpunit": "^11.5",
+        "spatie/laravel-ray": "^1.39"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
