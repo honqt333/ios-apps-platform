@@ -1,0 +1,20 @@
+# Vercel / Production environment variables reference
+# Set these in Vercel dashboard (Project → Settings → Environment Variables)
+# DO NOT commit actual values here — only placeholders
+
+# Public site URL (where users visit the app)
+NEXT_PUBLIC_SITE_URL=https://your-app.vercel.app
+
+# Public API URL (where the Laravel backend is hosted)
+# On Railway, this is typically: https://<project>.up.railway.app/api
+NEXT_PUBLIC_API_URL=https://your-api.up.railway.app/api
+
+# App branding
+NEXT_PUBLIC_APP_NAME="iOS Apps Platform"
+
+# Locales
+NEXT_PUBLIC_DEFAULT_LOCALE=en
+NEXT_PUBLIC_SUPPORTED_LOCALES=en,ar
+
+# Default theme (light | dark | system)
+NEXT_PUBLIC_DEFAULT_THEME=system

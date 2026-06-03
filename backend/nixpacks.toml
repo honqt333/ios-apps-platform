@@ -1,0 +1,22 @@
+# Nixpacks configuration for Railway
+# https://docs.railway.app/reference/config-as-code
+
+[phases.setup]
+aptPkgs = ["libpng-dev", "libzip-dev", "libicu-dev", "libxml2-dev", "libonig-dev"]
+
+[phases.install]
+cmds = [
+  "composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader",
+  "php artisan key:generate --force || true",
+  "php artisan storage:link || true"
+]
+
+[phases.build]
+cmds = [
+  "php artisan config:cache",
+  "php artisan route:cache",
+  "php artisan view:cache"
+]
+
+[start]
+cmd = "php artisan migrate --force --no-interaction && php artisan db:seed --force --no-interaction || true && php artisan serve --host=0.0.0.0 --port=$PORT"
